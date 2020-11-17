@@ -19,12 +19,31 @@
 
         <title>Cardio Dherma</title>
 
-        <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" rel="stylesheet">
-        <link href="//fonts.googleapis.com/css?family=Montserrat:500,700&display=swap&subset=latin-ext"
-              rel="stylesheet">
-        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,600&display=swap&subset=latin-ext"
-              rel="stylesheet">
-        <link href="dist/bundle-release.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/fontawesome.min.css"
+              integrity="sha512-kJ30H6g4NGhWopgdseRb8wTsyllFUYIx3hiUwmGAkgA9B/JbzUBDQVr2VVlWGde6sdBVOG7oU8AL35ORDuMm8g=="
+              crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/brands.min.css"
+              integrity="sha512-D0B6cFS+efdzUE/4wh5XF5599DtW7Q1bZOjAYGBfC0Lg9WjcrqPXZto020btDyrlDUrfYKsmzFvgf/9AB8J0Jw=="
+              crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/solid.min.css"
+              integrity="sha512-SazV6tF6Ko4GxhyIZpKoXiKYndqzh7+cqxl9HDH7DGSpjkCN3QLqTAlhJHJnKxu3/2rfCsltzwFC4CmxZE1hPg=="
+              crossorigin="anonymous" />
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+              integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+              crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+        <link href="dist/css/bundle-release.min.css" rel="stylesheet">
+
     </head>
 
     <body data-spy="scroll" data-target=".fixed-top">
@@ -99,6 +118,8 @@
             </div>
         </header>
 
+
+
         <!-- sobre-nos -->
         <div id="sobre-nos" class="basic-1">
             <div class="container">
@@ -120,7 +141,7 @@
                     </div>
                     <div class="col-lg-7">
                         <div class="image-container">
-                            <img class="img-fluid" src="photos/-20.jpeg" alt="Cardio Dherma">
+                            <img class="img-fluid" src="photos/21.jpeg" alt="Cardio Dherma">
                         </div> <!-- end of image-container -->
                     </div>
                 </div>
@@ -335,37 +356,42 @@
                         </div>
                     </div>
                     <div class="col-lg-6">
-
                         <form id="contactForm" data-toggle="validator" data-focus="false">
                             <div class="form-group">
-                                <input type="text" class="form-control-input" id="cname" required>
+                                <input type="text" class="form-control-input" id="cname" required
+                                       oninvalid="this.setCustomValidity('Por favor, preencha esse campo.')"
+                                       oninput="this.setCustomValidity('')">
                                 <label class="label-control" for="cname">Nome Completo</label>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control-input" id="cemail" required>
+                                <input type="email" class="form-control-input" id="cemail" required
+                                       oninvalid="this.setCustomValidity('Por favor, informe um e-mail válido.')"
+                                       oninput="this.setCustomValidity('')">
                                 <label class="label-control" for="cemail">E-mail</label>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control-input" id="whatsapp" required>
-                                <label class="label-control" for="whatsapp">Whatsapp</label>
+                                <input class="form-control-input" id="cwhatsapp" required
+                                       oninvalid="this.setCustomValidity('Por favor, preencha esse campo.')"
+                                       oninput="this.setCustomValidity('')">
+                                <label class="label-control" for="cwhatsapp">Whatsapp</label>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control-textarea" id="cmessage" required></textarea>
+                                <textarea class="form-control-textarea" id="cmessage" required
+                                          oninvalid="this.setCustomValidity('Por favor, preencha esse campo.')"
+                                          oninput="this.setCustomValidity('')"></textarea>
                                 <label class="label-control" for="cmessage">Mensagem</label>
                                 <div class="help-block with-errors"></div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="form-control-submit-button">ENVIAR</button>
                             </div>
-                            <div class="form-message">
+                            <div class="form-message pb-4">
                                 <div id="cmsgSubmit" class="h3 text-center hidden"></div>
                             </div>
                         </form>
-
-
                     </div>
                 </div>
             </div>
@@ -392,7 +418,16 @@
             </div>
         </div>
 
-        <script src="dist/bundle-release.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+                integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+                integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+                crossorigin="anonymous"></script>
+
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+        <script src="dist/js/bundle-release.min.js"></script>
 
         <script>
             function myMap() {
@@ -406,7 +441,6 @@
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPqc7GlniZDjhVJeFID4DNwM_cKGeCx0U&callback=myMap"
                 async defer></script>
-        <script src="js/scripts.js"></script> <!-- Custom scripts -->
     </body>
 
 </html>

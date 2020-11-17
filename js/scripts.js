@@ -5,27 +5,27 @@
 */
 
 
-(function($) {
-    "use strict"; 
+(function ($) {
+    "use strict";
 
     // 
     let posLetters = 0;
     const letterContainer = $(".animation-letters .container");
     const letterUlLi = $(".animation-letters .container .content ul li");
     // console.log("letterUlLi", letterUlLi.length);
-    setInterval(function(){
-        if ( posLetters < (letterUlLi.length - 1)){
+    setInterval(function () {
+        if (posLetters < (letterUlLi.length - 1)) {
             posLetters++;
             $(".animation-letters .container .content").attr(
-                "style", "transition: margin-top .5s ease-in-out;margin-top: calc(-"+letterContainer.height()+"px * "+posLetters+")"
+                "style", "transition: margin-top .5s ease-in-out;margin-top: calc(-" + letterContainer.height() + "px * " + posLetters + ")"
             );
-        }else{
+        } else {
             $(".animation-letters .container .content").attr(
-                "style", "transition: margin-top .3s linear;margin-top: calc(-"+letterContainer.height()+"px * 0)"
+                "style", "transition: margin-top .3s linear;margin-top: calc(-" + letterContainer.height() + "px * 0)"
             );
             posLetters = 0;
         }
-    },2000);
+    }, 2000);
 
     let posBanners = 0;
     const banners = [
@@ -34,98 +34,98 @@
         'photos/capa/3.jpg'
     ]
 
-    banners.forEach( value => {
-        $("body").append("<img src=\""+value+"\" style=\"display:none;\" />");
+    banners.forEach(value => {
+        $("body").append("<img src=\"" + value + "\" style=\"display:none;\" />");
     });
 
     const setBanner = () => {
         $(".header").attr(
-            "style", "height:"+$(window).height()+"px; transition: background .5s ease-in-out; background-image:url('"+banners[posBanners]+"')"
-            );
+            "style", "height:" + $(window).height() + "px; transition: background .5s ease-in-out; background-image:url('" + banners[posBanners] + "')"
+        );
     }
     setBanner();
-    setInterval(function(){
+    setInterval(function () {
         setBanner();
-            posBanners++;
-            if ( 
+        posBanners++;
+        if (
             posBanners >= banners.length
-            ){
-                posBanners = 0
-            }
-    },3000);
-	// margin-top: calc(-66px * 0);
+        ) {
+            posBanners = 0
+        }
+    }, 3000);
+    // margin-top: calc(-66px * 0);
 
     // 
 
-    if ( window.innerWidth > 768 ){
+    if (window.innerWidth > 768) {
         $(".header").height(
             window.innerHeight
         );
-    }else{
+    } else {
         $("#grid-photos").removeClass("grid");
     }
 
-    $("a[href='#lightbox']").on("click", function(){
+    $("a[href='#lightbox']").on("click", function () {
         console.log("lightbox");
         $("#lightbox").find("img").attr("src", $(this).data('picture'));
     });
 
-	
-	/* Navbar Scripts */
-	// jQuery to collapse the navbar on scroll
-    $(window).on('scroll load', function() {
-		if ($(".navbar").offset().top > 20) {
-			$(".fixed-top").addClass("top-nav-collapse");
-		} else {
-			$(".fixed-top").removeClass("top-nav-collapse");
-		}
+
+    /* Navbar Scripts */
+    // jQuery to collapse the navbar on scroll
+    $(window).on('scroll load', function () {
+        if ($(".navbar").offset().top > 20) {
+            $(".fixed-top").addClass("top-nav-collapse");
+        } else {
+            $(".fixed-top").removeClass("top-nav-collapse");
+        }
     });
 
-	// jQuery for page scrolling feature - requires jQuery Easing plugin
-	$(function() {
-		$(document).on('click', 'a.page-scroll', function(event) {
-			var $anchor = $(this);
-			$('html, body').stop().animate({
-				scrollTop: $($anchor.attr('href')).offset().top
-			}, 600, 'easeInOutExpo');
-			event.preventDefault();
-		});
-	});
+    // jQuery for page scrolling feature - requires jQuery Easing plugin
+    $(function () {
+        $(document).on('click', 'a.page-scroll', function (event) {
+            var $anchor = $(this);
+            $('html, body').stop().animate({
+                scrollTop: $($anchor.attr('href')).offset().top
+            }, 600, 'easeInOutExpo');
+            event.preventDefault();
+        });
+    });
 
     // closes the responsive menu on menu item click
-    $(".navbar-nav li a").on("click", function(event) {
-    if (!$(this).parent().hasClass('dropdown'))
-        $(".navbar-collapse").collapse('hide');
+    $(".navbar-nav li a").on("click", function (event) {
+        if (!$(this).parent().hasClass('dropdown'))
+            $(".navbar-collapse").collapse('hide');
     });
 
 
     /* Rotating Text - Morphtext */
-	$("#js-rotating").Morphext({
-		// The [in] animation type. Refer to Animate.css for a list of available animations.
-		animation: "fadeIn",
-		// An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
-		separator: ",",
-		// The delay between the changing of each phrase in milliseconds.
-		speed: 2000,
-		complete: function () {
-			// Called after the entrance animation is executed.
-		}
+    $("#js-rotating").Morphext({
+        // The [in] animation type. Refer to Animate.css for a list of available animations.
+        animation: "fadeIn",
+        // An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+        separator: ",",
+        // The delay between the changing of each phrase in milliseconds.
+        speed: 2000,
+        complete: function () {
+            // Called after the entrance animation is executed.
+        }
     });
-    
+
 
     /* Card Slider - Swiper */
-	var cardSlider = new Swiper('.card-slider', {
-		autoplay: {
+    var cardSlider = new Swiper('.card-slider', {
+        autoplay: {
             delay: 4000,
             disableOnInteraction: false
-		},
+        },
         loop: true,
         navigation: {
-			nextEl: '.swiper-button-next',
-			prevEl: '.swiper-button-prev'
-		},
-		slidesPerView: 3,
-		spaceBetween: 20,
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev'
+        },
+        slidesPerView: 3,
+        spaceBetween: 20,
         breakpoints: {
             // when window is <= 992px
             992: {
@@ -134,24 +134,24 @@
             // when window is <= 768px
             768: {
                 slidesPerView: 1
-            } 
+            }
         }
     });
 
-    
+
     /* Lightbox - Magnific Popup */
-	$('.popup-with-move-anim').magnificPopup({
-		type: 'inline',
-		fixedContentPos: false, /* keep it false to avoid html tag shift with margin-right: 17px */
-		fixedBgPos: true,
-		overflowY: 'auto',
-		closeBtnInside: true,
-		preloader: false,
-		midClick: true,
-		removalDelay: 300,
-		mainClass: 'my-mfp-slide-bottom'
+    $('.popup-with-move-anim').magnificPopup({
+        type: 'inline',
+        fixedContentPos: false, /* keep it false to avoid html tag shift with margin-right: 17px */
+        fixedBgPos: true,
+        overflowY: 'auto',
+        closeBtnInside: true,
+        preloader: false,
+        midClick: true,
+        removalDelay: 300,
+        mainClass: 'my-mfp-slide-bottom'
     });
-    
+
 
     /* Filter - Isotope */
     var $grid = $('.grid').isotope({
@@ -159,72 +159,72 @@
         itemSelector: '.element-item',
         layoutMode: 'fitRows'
     });
-    
+
     // filter items on button click
-    $('.filters-button-group').on( 'click', 'a', function() {
+    $('.filters-button-group').on('click', 'a', function () {
         var filterValue = $(this).attr('data-filter');
         $grid.isotope({ filter: filterValue });
     });
-    
+
     // change is-checked class on buttons
-    $('.button-group').each( function( i, buttonGroup ) {
-        var $buttonGroup = $( buttonGroup );
-        $buttonGroup.on( 'click', 'a', function() {
+    $('.button-group').each(function (i, buttonGroup) {
+        var $buttonGroup = $(buttonGroup);
+        $buttonGroup.on('click', 'a', function () {
             $buttonGroup.find('.is-checked').removeClass('is-checked');
-            $( this ).addClass('is-checked');
-        });	
+            $(this).addClass('is-checked');
+        });
     });
-    
+
 
     /* Counter - CountTo */
-	var a = 0;
-	$(window).scroll(function() {
-		if ($('#counter').length) { // checking if CountTo section exists in the page, if not it will not run the script and avoid errors	
-			var oTop = $('#counter').offset().top - window.innerHeight;
-			if (a == 0 && $(window).scrollTop() > oTop) {
-			$('.counter-value').each(function() {
-				var $this = $(this),
-				countTo = $this.attr('data-count');
-				$({
-				countNum: $this.text()
-				}).animate({
-					countNum: countTo
-				},
-				{
-					duration: 2000,
-					easing: 'swing',
-					step: function() {
-					$this.text(Math.floor(this.countNum));
-					},
-					complete: function() {
-					$this.text(this.countNum);
-					//alert('finished');
-					}
-				});
-			});
-			a = 1;
-			}
-		}
+    var a = 0;
+    $(window).scroll(function () {
+        if ($('#counter').length) { // checking if CountTo section exists in the page, if not it will not run the script and avoid errors	
+            var oTop = $('#counter').offset().top - window.innerHeight;
+            if (a == 0 && $(window).scrollTop() > oTop) {
+                $('.counter-value').each(function () {
+                    var $this = $(this),
+                        countTo = $this.attr('data-count');
+                    $({
+                        countNum: $this.text()
+                    }).animate({
+                        countNum: countTo
+                    },
+                        {
+                            duration: 2000,
+                            easing: 'swing',
+                            step: function () {
+                                $this.text(Math.floor(this.countNum));
+                            },
+                            complete: function () {
+                                $this.text(this.countNum);
+                                //alert('finished');
+                            }
+                        });
+                });
+                a = 1;
+            }
+        }
     });
 
 
     /* Move Form Fields Label When User Types */
     // for input and textarea fields
-    $("input, textarea").keyup(function(){
-		if ($(this).val() != '') {
-			$(this).addClass('notEmpty');
-		} else {
-			$(this).removeClass('notEmpty');
-		}
+    $("input, textarea").keyup(function () {
+        if ($(this).val() != '') {
+            $(this).addClass('notEmpty');
+        } else {
+            $(this).removeClass('notEmpty');
+        }
     });
 
 
     /* Call Me Form */
-    $("#callMeForm").validator().on("submit", function(event) {
-    	if (event.isDefaultPrevented()) {
+    $("#callMeForm").validator().on("submit", function (event) {
+        if (event.isDefaultPrevented()) {
             // handle the invalid form...
             lformError();
-            lsubmitMSG(false, "Please fill all fields!");
+            lsubmitMSG(false, "Por favor, preencha todos os campos!");
         } else {
             // everything looks good!
             event.preventDefault();
@@ -234,17 +234,19 @@
 
     function lsubmitForm() {
         // initiate variables with form content
-		var name = $("#lname").val();
-		var phone = $("#lphone").val();
-		var email = $("#lemail").val();
-		var select = $("#lselect").val();
+        var name = $("#lname").val();
+        var phone = $("#lphone").val();
+        var email = $("#lemail").val();
+        var select = $("#lselect").val();
         var terms = $("#lterms").val();
-        
+
+        console.log({ name, phone, email, select, terms });
+
         $.ajax({
             type: "POST",
             url: "php/callmeform-process.php",
-            data: "name=" + name + "&phone=" + phone + "&email=" + email + "&select=" + select + "&terms=" + terms, 
-            success: function(text) {
+            data: "name=" + name + "&phone=" + phone + "&email=" + email + "&select=" + select + "&terms=" + terms,
+            success: function (text) {
                 if (text == "success") {
                     lformSuccess();
                 } else {
@@ -253,7 +255,7 @@
                 }
             }
         });
-	}
+    }
 
     function lformSuccess() {
         $("#callMeForm")[0].reset();
@@ -262,10 +264,10 @@
     }
 
     function lformError() {
-        $("#callMeForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        $("#callMeForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
             $(this).removeClass();
         });
-	}
+    }
 
     function lsubmitMSG(valid, msg) {
         if (valid) {
@@ -278,11 +280,11 @@
 
 
     /* Contact Form */
-    $("#contactForm").validator().on("submit", function(event) {
-    	if (event.isDefaultPrevented()) {
+    $("#contactForm").validator().on("submit", function (event) {
+        if (event.isDefaultPrevented()) {
             // handle the invalid form...
             cformError();
-            csubmitMSG(false, "Please fill all fields!");
+            csubmitMSG(false, "Por favor, preencha todos os campos!");
         } else {
             // everything looks good!
             event.preventDefault();
@@ -292,15 +294,18 @@
 
     function csubmitForm() {
         // initiate variables with form content
-		var name = $("#cname").val();
-		var email = $("#cemail").val();
+        var name = $("#cname").val();
+        var email = $("#cemail").val();
         var message = $("#cmessage").val();
-        var terms = $("#cterms").val();
+        var whatsapp = $("#cwhatsapp").val();
+
+        console.log({ name, email, message, whatsapp });
+
         $.ajax({
             type: "POST",
             url: "php/contactform-process.php",
-            data: "name=" + name + "&email=" + email + "&message=" + message + "&terms=" + terms, 
-            success: function(text) {
+            data: "name=" + name + "&email=" + email + "&message=" + message + "&whatsapp=" + whatsapp,
+            success: function (text) {
                 if (text == "success") {
                     cformSuccess();
                 } else {
@@ -309,7 +314,7 @@
                 }
             }
         });
-	}
+    }
 
     function cformSuccess() {
         $("#contactForm")[0].reset();
@@ -319,10 +324,10 @@
     }
 
     function cformError() {
-        $("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        $("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
             $(this).removeClass();
         });
-	}
+    }
 
     function csubmitMSG(valid, msg) {
         if (valid) {
@@ -335,11 +340,11 @@
 
 
     /* Privacy Form */
-    $("#privacyForm").validator().on("submit", function(event) {
-    	if (event.isDefaultPrevented()) {
+    $("#privacyForm").validator().on("submit", function (event) {
+        if (event.isDefaultPrevented()) {
             // handle the invalid form...
             pformError();
-            psubmitMSG(false, "Please fill all fields!");
+            psubmitMSG(false, "Por favor, preencha todos os campos!");
         } else {
             // everything looks good!
             event.preventDefault();
@@ -349,16 +354,16 @@
 
     function psubmitForm() {
         // initiate variables with form content
-		var name = $("#pname").val();
-		var email = $("#pemail").val();
+        var name = $("#pname").val();
+        var email = $("#pemail").val();
         var select = $("#pselect").val();
         var terms = $("#pterms").val();
-        
+
         $.ajax({
             type: "POST",
             url: "php/privacyform-process.php",
-            data: "name=" + name + "&email=" + email + "&select=" + select + "&terms=" + terms, 
-            success: function(text) {
+            data: "name=" + name + "&email=" + email + "&select=" + select + "&terms=" + terms,
+            success: function (text) {
                 if (text == "success") {
                     pformSuccess();
                 } else {
@@ -367,7 +372,7 @@
                 }
             }
         });
-	}
+    }
 
     function pformSuccess() {
         $("#privacyForm")[0].reset();
@@ -376,10 +381,10 @@
     }
 
     function pformError() {
-        $("#privacyForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        $("#privacyForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
             $(this).removeClass();
         });
-	}
+    }
 
     function psubmitMSG(valid, msg) {
         if (valid) {
@@ -389,13 +394,13 @@
         }
         $("#pmsgSubmit").removeClass().addClass(msgClasses).text(msg);
     }
-    
+
 
     /* Back To Top Button */
     // create the back to top button
     $('body').prepend('<a href="body" class="back-to-top page-scroll">Back to Top</a>');
     var amountScrolled = 700;
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(window).scrollTop() > amountScrolled) {
             $('a.back-to-top').fadeIn('500');
         } else {
@@ -404,35 +409,35 @@
     });
 
 
-	/* Removes Long Focus On Buttons */
-	$(".button, a, button").mouseup(function() {
-		$(this).blur();
+    /* Removes Long Focus On Buttons */
+    $(".button, a, button").mouseup(function () {
+        $(this).blur();
     });
 
-    
 
-	/* Preloader */
-	$(window).on('load', function() {
 
-		var preloaderFadeOutTime = 500;
-		function hidePreloader() {
-			var preloader = $('.spinner-wrapper');
-			setTimeout(function() {
-				preloader.fadeOut(preloaderFadeOutTime);
-			}, 500);
-		}
-		hidePreloader();
+    /* Preloader */
+    $(window).on('load', function () {
+
+        var preloaderFadeOutTime = 500;
+        function hidePreloader() {
+            var preloader = $('.spinner-wrapper');
+            setTimeout(function () {
+                preloader.fadeOut(preloaderFadeOutTime);
+            }, 500);
+        }
+        hidePreloader();
     });
-    
+
 })(jQuery);
 
 var map;
-        function initMap() {
-          // The location of Uluru
-          var uluru = {lat: -27.096515, lng: -48.6182447};
-          // The map, centered at Uluru
-          var map = new google.maps.Map(
-              document.getElementById('map'), {zoom: 17, center: uluru});
-          // The marker, positioned at Uluru
-          var marker = new google.maps.Marker({position: uluru, map: map});
-        }
+function initMap() {
+    // The location of Uluru
+    var uluru = { lat: -27.096515, lng: -48.6182447 };
+    // The map, centered at Uluru
+    var map = new google.maps.Map(
+        document.getElementById('map'), { zoom: 17, center: uluru });
+    // The marker, positioned at Uluru
+    var marker = new google.maps.Marker({ position: uluru, map: map });
+}

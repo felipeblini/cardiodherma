@@ -78,6 +78,15 @@ p {
   padding-left: 1.25rem;
 }
 
+.mt-20 {
+  margin-top: 20px;
+}
+
+.person-picture {
+  width: 100%;
+  border-radius: 50%;
+}
+
 h1 {
   color: #484a46;
   font: 700 2.5rem/3rem "Montserrat", sans-serif;
@@ -2697,15 +2706,6 @@ h3 {
   -moz-animation: rotate 3s infinite linear;
   -o-animation: rotate 3s infinite linear;
   animation: rotate 3s infinite linear;
-}
-
-.mt-20 {
-  margin-top: 20px;
-}
-
-.person-picture {
-  width: 100%;
-  border-radius: 50%;
 }
 @-webkit-keyframes animSlider {
   0% {
