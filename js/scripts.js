@@ -210,198 +210,198 @@
 
     /* Move Form Fields Label When User Types */
     // for input and textarea fields
-    $("input, textarea").keyup(function () {
-        if ($(this).val() != '') {
-            $(this).addClass('notEmpty');
-        } else {
-            $(this).removeClass('notEmpty');
-        }
-    });
+    // $("input, textarea").keyup(function () {
+    //     if ($(this).val() != '') {
+    //         $(this).addClass('notEmpty');
+    //     } else {
+    //         $(this).removeClass('notEmpty');
+    //     }
+    // });
 
 
-    /* Call Me Form */
-    $("#callMeForm").validator().on("submit", function (event) {
-        if (event.isDefaultPrevented()) {
-            // handle the invalid form...
-            lformError();
-            lsubmitMSG(false, "Por favor, preencha todos os campos!");
-        } else {
-            // everything looks good!
-            event.preventDefault();
-            lsubmitForm();
-        }
-    });
+    // /* Call Me Form */
+    // $("#callMeForm").validator().on("submit", function (event) {
+    //     if (event.isDefaultPrevented()) {
+    //         // handle the invalid form...
+    //         lformError();
+    //         lsubmitMSG(false, "Por favor, preencha todos os campos!");
+    //     } else {
+    //         // everything looks good!
+    //         event.preventDefault();
+    //         lsubmitForm();
+    //     }
+    // });
 
-    function lsubmitForm() {
-        // initiate variables with form content
-        var name = $("#lname").val();
-        var phone = $("#lphone").val();
-        var email = $("#lemail").val();
-        var select = $("#lselect").val();
-        var terms = $("#lterms").val();
+    // function lsubmitForm() {
+    //     // initiate variables with form content
+    //     var name = $("#lname").val();
+    //     var phone = $("#lphone").val();
+    //     var email = $("#lemail").val();
+    //     var select = $("#lselect").val();
+    //     var terms = $("#lterms").val();
 
-        console.log('lsubmitForm', { name, phone, email, select, terms });
+    //     console.log('lsubmitForm', { name, phone, email, select, terms });
 
-        $.ajax({
-            type: "POST",
-            url: "php/callmeform-process.php",
-            data: "name=" + name + "&phone=" + phone + "&email=" + email + "&select=" + select + "&terms=" + terms,
-            success: function (text) {
-                console.log({ text });
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "php/callmeform-process.php",
+    //         data: "name=" + name + "&phone=" + phone + "&email=" + email + "&select=" + select + "&terms=" + terms,
+    //         success: function (text) {
+    //             console.log({ text });
 
-                if (text == "success") {
-                    lformSuccess();
-                } else {
-                    lformError();
-                    lsubmitMSG(false, text);
-                }
-            }
-        });
-    }
+    //             if (text == "success") {
+    //                 lformSuccess();
+    //             } else {
+    //                 lformError();
+    //                 lsubmitMSG(false, text);
+    //             }
+    //         }
+    //     });
+    // }
 
-    function lformSuccess() {
-        $("#callMeForm")[0].reset();
+    // function lformSuccess() {
+    //     $("#callMeForm")[0].reset();
 
-        lsubmitMSG(true, "Mensagem enviada!");
+    //     lsubmitMSG(true, "Mensagem enviada!");
 
-        $("input").removeClass('notEmpty'); // resets the field label after submission
-    }
+    //     $("input").removeClass('notEmpty'); // resets the field label after submission
+    // }
 
-    function lformError() {
-        $("#callMeForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-            $(this).removeClass();
-        });
-    }
+    // function lformError() {
+    //     $("#callMeForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+    //         $(this).removeClass();
+    //     });
+    // }
 
-    function lsubmitMSG(valid, msg) {
-        if (valid) {
-            var msgClasses = "h3 text-center tada animated";
-        } else {
-            var msgClasses = "h3 text-center";
-        }
-        $("#lmsgSubmit").removeClass().addClass(msgClasses).text(msg);
-    }
-
-
-    /* Contact Form */
-    $("#contactForm").validator().on("submit", function (event) {
-        if (event.isDefaultPrevented()) {
-            // handle the invalid form...
-            cformError();
-            csubmitMSG(false, "Por favor, preencha todos os campos!");
-        } else {
-            // everything looks good!
-            event.preventDefault();
-            csubmitForm();
-        }
-    });
-
-    function csubmitForm() {
-        // initiate variables with form content
-        var name = $("#cname").val();
-        var email = $("#cemail").val();
-        var message = $("#cmessage").val();
-        var whatsapp = $("#cwhatsapp").val();
-
-        console.log('csubmitForm', { name, email, message, whatsapp });
-
-        $.ajax({
-            type: "POST",
-            url: "php/contactform-process.php",
-            data: "name=" + name + "&email=" + email + "&message=" + message + "&whatsapp=" + whatsapp,
-            success: function (text) {
-                console.log({ text });
-
-                if (text == "success") {
-                    cformSuccess();
-                } else {
-                    cformError();
-                    csubmitMSG(false, text);
-                }
-            }
-        });
-    }
-
-    function cformSuccess() {
-        $("#contactForm")[0].reset();
-
-        csubmitMSG(true, "Mensagem enviada!");
-
-        $("input").removeClass('notEmpty'); // resets the field label after submission
-        $("textarea").removeClass('notEmpty'); // resets the field label after submission
-    }
-
-    function cformError() {
-        $("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-            $(this).removeClass();
-        });
-    }
-
-    function csubmitMSG(valid, msg) {
-        if (valid) {
-            var msgClasses = "h3 text-center tada animated";
-        } else {
-            var msgClasses = "h3 text-center";
-        }
-        $("#cmsgSubmit").removeClass().addClass(msgClasses).text(msg);
-    }
+    // function lsubmitMSG(valid, msg) {
+    //     if (valid) {
+    //         var msgClasses = "h3 text-center tada animated";
+    //     } else {
+    //         var msgClasses = "h3 text-center";
+    //     }
+    //     $("#lmsgSubmit").removeClass().addClass(msgClasses).text(msg);
+    // }
 
 
-    /* Privacy Form */
-    $("#privacyForm").validator().on("submit", function (event) {
-        if (event.isDefaultPrevented()) {
-            // handle the invalid form...
-            pformError();
-            psubmitMSG(false, "Por favor, preencha todos os campos!");
-        } else {
-            // everything looks good!
-            event.preventDefault();
-            psubmitForm();
-        }
-    });
+    // /* Contact Form */
+    // $("#contactForm").validator().on("submit", function (event) {
+    //     if (event.isDefaultPrevented()) {
+    //         // handle the invalid form...
+    //         cformError();
+    //         csubmitMSG(false, "Por favor, preencha todos os campos!");
+    //     } else {
+    //         // everything looks good!
+    //         event.preventDefault();
+    //         csubmitForm();
+    //     }
+    // });
 
-    function psubmitForm() {
-        // initiate variables with form content
-        var name = $("#pname").val();
-        var email = $("#pemail").val();
-        var select = $("#pselect").val();
-        var terms = $("#pterms").val();
+    // function csubmitForm() {
+    //     // initiate variables with form content
+    //     var name = $("#cname").val();
+    //     var email = $("#cemail").val();
+    //     var message = $("#cmessage").val();
+    //     var whatsapp = $("#cwhatsapp").val();
 
-        $.ajax({
-            type: "POST",
-            url: "php/privacyform-process.php",
-            data: "name=" + name + "&email=" + email + "&select=" + select + "&terms=" + terms,
-            success: function (text) {
-                if (text == "success") {
-                    pformSuccess();
-                } else {
-                    pformError();
-                    psubmitMSG(false, text);
-                }
-            }
-        });
-    }
+    //     console.log('csubmitForm', { name, email, message, whatsapp });
 
-    function pformSuccess() {
-        $("#privacyForm")[0].reset();
-        psubmitMSG(true, "Request Submitted!");
-        $("input").removeClass('notEmpty'); // resets the field label after submission
-    }
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "php/contactform-process.php",
+    //         data: "name=" + name + "&email=" + email + "&message=" + message + "&whatsapp=" + whatsapp,
+    //         success: function (text) {
+    //             console.log({ text });
 
-    function pformError() {
-        $("#privacyForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-            $(this).removeClass();
-        });
-    }
+    //             if (text == "success") {
+    //                 cformSuccess();
+    //             } else {
+    //                 cformError();
+    //                 csubmitMSG(false, text);
+    //             }
+    //         }
+    //     });
+    // }
 
-    function psubmitMSG(valid, msg) {
-        if (valid) {
-            var msgClasses = "h3 text-center tada animated";
-        } else {
-            var msgClasses = "h3 text-center";
-        }
-        $("#pmsgSubmit").removeClass().addClass(msgClasses).text(msg);
-    }
+    // function cformSuccess() {
+    //     $("#contactForm")[0].reset();
+
+    //     csubmitMSG(true, "Mensagem enviada!");
+
+    //     $("input").removeClass('notEmpty'); // resets the field label after submission
+    //     $("textarea").removeClass('notEmpty'); // resets the field label after submission
+    // }
+
+    // function cformError() {
+    //     $("#contactForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+    //         $(this).removeClass();
+    //     });
+    // }
+
+    // function csubmitMSG(valid, msg) {
+    //     if (valid) {
+    //         var msgClasses = "h3 text-center tada animated";
+    //     } else {
+    //         var msgClasses = "h3 text-center";
+    //     }
+    //     $("#cmsgSubmit").removeClass().addClass(msgClasses).text(msg);
+    // }
+
+
+    // /* Privacy Form */
+    // $("#privacyForm").validator().on("submit", function (event) {
+    //     if (event.isDefaultPrevented()) {
+    //         // handle the invalid form...
+    //         pformError();
+    //         psubmitMSG(false, "Por favor, preencha todos os campos!");
+    //     } else {
+    //         // everything looks good!
+    //         event.preventDefault();
+    //         psubmitForm();
+    //     }
+    // });
+
+    // function psubmitForm() {
+    //     // initiate variables with form content
+    //     var name = $("#pname").val();
+    //     var email = $("#pemail").val();
+    //     var select = $("#pselect").val();
+    //     var terms = $("#pterms").val();
+
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "php/privacyform-process.php",
+    //         data: "name=" + name + "&email=" + email + "&select=" + select + "&terms=" + terms,
+    //         success: function (text) {
+    //             if (text == "success") {
+    //                 pformSuccess();
+    //             } else {
+    //                 pformError();
+    //                 psubmitMSG(false, text);
+    //             }
+    //         }
+    //     });
+    // }
+
+    // function pformSuccess() {
+    //     $("#privacyForm")[0].reset();
+    //     psubmitMSG(true, "Request Submitted!");
+    //     $("input").removeClass('notEmpty'); // resets the field label after submission
+    // }
+
+    // function pformError() {
+    //     $("#privacyForm").removeClass().addClass('shake animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+    //         $(this).removeClass();
+    //     });
+    // }
+
+    // function psubmitMSG(valid, msg) {
+    //     if (valid) {
+    //         var msgClasses = "h3 text-center tada animated";
+    //     } else {
+    //         var msgClasses = "h3 text-center";
+    //     }
+    //     $("#pmsgSubmit").removeClass().addClass(msgClasses).text(msg);
+    // }
 
 
     /* Back To Top Button */
