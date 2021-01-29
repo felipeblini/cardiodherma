@@ -72,23 +72,13 @@ module.exports = function (grunt) {
             index: {
                 files: [
                     {
-                        expand: true, src: ['index.html',
-                            'js/isotope.pkgd.min.js',
-                            'js/jquery.easing.min.js',
-                            'js/jquery.magnific-popup.js',
-                            'js/morphext.min.js',
-                            'js/validator.min.js',
-                            'js/scripts.js',
-                            'js/bootstrap.min.js',
-                            'js/jquery.min.js',
-                            'js/popper.min.js',
-                            'js/swiper.min.js'], dest: 'dist/', filter: 'isFile'
+                        expand: true, src: ['index.html', 'js/*'], dest: 'dist/', filter: 'isFile'
                     },
                 ],
             },
         },
         clean: {
-            js: ['dist/js/*.js', '!dist/js/*.min.js'],
+            // js: ['dist/js/*.js', '!dist/js/*.min.js'],
             css: ['dist/css/*.css', '!dist/css/*.min.css']
         },
         'string-replace': {
