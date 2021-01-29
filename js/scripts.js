@@ -62,7 +62,7 @@
             window.innerHeight
         );
     } else {
-        $("#grid-photos").removeClass("grid");
+        //("#grid-photos").removeClass("grid");
     }
 
     $("a[href='#lightbox']").on("click", function () {
