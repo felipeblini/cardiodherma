@@ -240,13 +240,15 @@
         var select = $("#lselect").val();
         var terms = $("#lterms").val();
 
-        console.log({ name, phone, email, select, terms });
+        console.log('lsubmitForm', { name, phone, email, select, terms });
 
         $.ajax({
             type: "POST",
             url: "php/callmeform-process.php",
             data: "name=" + name + "&phone=" + phone + "&email=" + email + "&select=" + select + "&terms=" + terms,
             success: function (text) {
+                console.log({ text });
+
                 if (text == "success") {
                     lformSuccess();
                 } else {
@@ -259,7 +261,9 @@
 
     function lformSuccess() {
         $("#callMeForm")[0].reset();
-        lsubmitMSG(true, "Request Submitted!");
+
+        lsubmitMSG(true, "Mensagem enviada!");
+
         $("input").removeClass('notEmpty'); // resets the field label after submission
     }
 
@@ -299,13 +303,15 @@
         var message = $("#cmessage").val();
         var whatsapp = $("#cwhatsapp").val();
 
-        console.log({ name, email, message, whatsapp });
+        console.log('csubmitForm', { name, email, message, whatsapp });
 
         $.ajax({
             type: "POST",
             url: "php/contactform-process.php",
             data: "name=" + name + "&email=" + email + "&message=" + message + "&whatsapp=" + whatsapp,
             success: function (text) {
+                console.log({ text });
+
                 if (text == "success") {
                     cformSuccess();
                 } else {
@@ -318,7 +324,9 @@
 
     function cformSuccess() {
         $("#contactForm")[0].reset();
-        csubmitMSG(true, "Message Submitted!");
+
+        csubmitMSG(true, "Mensagem enviada!");
+
         $("input").removeClass('notEmpty'); // resets the field label after submission
         $("textarea").removeClass('notEmpty'); // resets the field label after submission
     }
