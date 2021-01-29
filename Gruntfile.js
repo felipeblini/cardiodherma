@@ -4,7 +4,7 @@ module.exports = function (grunt) {
         concat: {
             js: {
                 src: [
-                    'js/validator.min.js',
+                    //'js/validator.min.js',
                     'js/scripts.js'
                 ],
                 dest: 'dist/js/bundle-concated.js'
@@ -94,10 +94,11 @@ module.exports = function (grunt) {
                         pattern: /js\/scripts\.js/ig,
                         replacement: 'js/scripts.min.js',
                     },
-                    {
-                        pattern: /<script src="js\/validator\.min\.js"><\/script>/ig,
-                        replacement: '',
-                    }]
+                        // {
+                        //     pattern: /<script src="js\/validator\.min\.js"><\/script>/ig,
+                        //     replacement: '',
+                        // }
+                    ]
                 }
             }
         },
