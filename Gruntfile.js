@@ -71,7 +71,19 @@ module.exports = function (grunt) {
         copy: {
             index: {
                 files: [
-                    { expand: true, src: ['index.html'], dest: 'dist/', filter: 'isFile' },
+                    {
+                        expand: true, src: ['index.html',
+                            'js/isotope.pkgd.min.js',
+                            'js/jquery.easing.min.js',
+                            'js/jquery.magnific-popup.js',
+                            'js/morphext.min.js',
+                            'js/validator.min.js',
+                            'js/scripts.js',
+                            'js/bootstrap.min.js',
+                            'js/jquery.min.js',
+                            'js/popper.min.js',
+                            'js/swiper.min.js'], dest: 'dist/', filter: 'isFile'
+                    },
                 ],
             },
         },
