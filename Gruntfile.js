@@ -4,18 +4,14 @@ module.exports = function (grunt) {
         concat: {
             js: {
                 src: [
-                    'js/isotope.pkgd.min.js',
-                    'js/jquery.easing.min.js',
-                    'js/jquery.magnific-popup.js',
-                    'js/morphext.min.js',
                     'js/validator.min.js',
                     'js/scripts.js'
                 ],
-                dest: 'dist/js/bundle-release.js'
+                dest: 'dist/js/bundle-concated.js'
             },
             css: {
                 src: ['css/**/*.css'],
-                dest: 'dist/css/bundle-release.css'
+                dest: 'dist/css/styles.min.css'
             }
         },
         babel: {
@@ -25,7 +21,7 @@ module.exports = function (grunt) {
             },
             dist: {
                 files: {
-                    'dist/js/bundle-release.es5.js': 'dist/js/bundle-release.js'
+                    'dist/js/bundle-es5.js': 'dist/js/bundle-concated.js'
                 }
             }
         },
@@ -35,7 +31,7 @@ module.exports = function (grunt) {
                     banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
                 },
                 files: {
-                    'dist/js/bundle-release.min.js': 'dist/js/bundle-release.es5.js'
+                    'dist/js/scripts.min.js': 'dist/js/bundle-es5.js'
                 }
             }
         },
@@ -72,13 +68,13 @@ module.exports = function (grunt) {
             index: {
                 files: [
                     {
-                        expand: true, src: ['index.html', 'js/*'], dest: 'dist/', filter: 'isFile'
+                        expand: true, src: ['index.html'], dest: 'dist/', filter: 'isFile'
                     },
                 ],
             },
         },
         clean: {
-            // js: ['dist/js/*.js', '!dist/js/*.min.js'],
+            js: ['dist/js/*.js', '!dist/js/*.min.js'],
             css: ['dist/css/*.css', '!dist/css/*.min.css']
         },
         'string-replace': {
@@ -91,11 +87,30 @@ module.exports = function (grunt) {
                 }],
                 options: {
                     replacements: [{
-                        pattern: /dist\//ig,
+                        pattern: /css\/styles\.css/ig,
+                        replacement: 'css/styles.min.css',
+                    },
+                    {
+                        pattern: /js\/scripts\.js/ig,
+                        replacement: 'js/scripts.min.js',
+                    },
+                    {
+                        pattern: /<script src="js\/validator\.min\.js"><\/script>/ig,
                         replacement: '',
                     }]
                 }
             }
+        },
+        htmlmin: {
+            dist: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {
+                    'dist/index.html': 'dist/index.html',
+                }
+            },
         }
     });
 
@@ -108,7 +123,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-string-replace');
+    grunt.loadNpmTasks('grunt-contrib-htmlmin');
 
     // Default task(s).
-    grunt.registerTask('default', ['concat', 'babel', 'uglify', 'cssmin', 'imagemin', 'copy', 'string-replace', 'clean']);
+    grunt.registerTask('default', ['concat', 'babel', 'uglify', 'cssmin', 'imagemin', 'copy', 'string-replace', 'htmlmin', 'clean']);
 };
